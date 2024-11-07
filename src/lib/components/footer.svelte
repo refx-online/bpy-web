@@ -1,5 +1,11 @@
 <script lang="ts">
-    import { appName } from '$lib/env';
+    import { 
+        appName, 
+        githubUrl,
+        //twitterUrl,
+        //youtubeUrl,
+        discordUrl
+     } from '$lib/env';
     import { __ } from '$lib/language';
     import { userLanguage } from '$lib/storage';
     import { writable } from 'svelte/store';
@@ -40,28 +46,27 @@
                             </p>
                         </div>
                         
-                        <!-- TODO: use .env -->
                         <div>
                             <h3 class="font-semibold mb-1">{__('Quick Links', $userLanguage)}</h3>
                             <ul class="space-y-0.5">
                                 <li><a href="/" class="hover:text-primary-400 transition-colors">{__('Home', $userLanguage)}</a></li>
                                 <li><a href="/donate" class="hover:text-primary-400 transition-colors">{__('Donate', $userLanguage)}</a></li>
-                                <li><a href="https://github.com/refx-online/bpy-web" target="_blank" rel="noopener noreferrer" class="hover:text-primary-400 transition-colors">Source Code</a></li>
+                                <li><a href={`${githubUrl}/bpy-web`} target="_blank" rel="noopener noreferrer" class="hover:text-primary-400 transition-colors">Source Code</a></li>
                             </ul>
                         </div>
 
                         <div>
                             <h3 class="font-semibold mb-1">{__('Community', $userLanguage)}</h3>
                             <ul class="space-y-0.5">
-                                <li><a href="https://discord.gg/jAByKzy8Mq" target="_blank" rel="noopener noreferrer" class="hover:text-primary-400 transition-colors">Discord</a></li>
-                                <!--<li><a href="https://twitter.com/" target="_blank" rel="noopener noreferrer" class="hover:text-primary-400 transition-colors">Twitter</a></li>-->
-                                <!--<li><a href="https://youtube.com/" target="_blank" rel="noopener noreferrer" class="hover:text-primary-400 transition-colors">Youtube</a></li>-->
-                                <li><a href="https://github.com/refx-online" target="_blank" rel="noopener noreferrer" class="hover:text-primary-400 transition-colors">GitHub</a></li>
+                                <li><a href={discordUrl} target="_blank" rel="noopener noreferrer" class="hover:text-primary-400 transition-colors">Discord</a></li>
+                                <!--<li><a href={twitterUrl} target="_blank" rel="noopener noreferrer" class="hover:text-primary-400 transition-colors">Twitter</a></li>-->
+                                <!--<li><a href={youtubeUrl} target="_blank" rel="noopener noreferrer" class="hover:text-primary-400 transition-colors">Youtube</a></li>-->
+                                <li><a href={githubUrl} target="_blank" rel="noopener noreferrer" class="hover:text-primary-400 transition-colors">GitHub</a></li>
                             </ul>
                         </div>
 
                         <div>
-                            <h3 class="font-semibold mb-1">{__('Legal', $userLanguage)}</h3>
+                            <h3 class="font-semibold mb-1">{__('Info', $userLanguage)}</h3>
                             <ul class="space-y-0.5"> <!-- TODO: make these -->
                                 <li><a href="/rules" class="hover:text-primary-400 transition-colors">{__('Rules', $userLanguage)}</a></li>
                                 <li><a href="/cheat_info" class="hover:text-primary-400 transition-colors">{__('Cheat Info', $userLanguage)}</a></li>
