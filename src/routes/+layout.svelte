@@ -43,6 +43,7 @@
 	import type { UserData } from '$lib/types';
 	import Popup from '$lib/components/Popup.svelte';
 	import { __, languages } from '$lib/language';
+	import Footer from '$lib/components/footer.svelte';
 
 	storePopup.set({ computePosition, autoUpdate, flip, shift, offset, arrow });
 	initializeStores();
@@ -294,4 +295,30 @@
 			<slot />
 		</div>
 	{/key}
+
+    <svelte:fragment slot="footer">
+        {#if ($page.data.url != '/signin' && $page.data.url != '/signup') || $page.status != 200}
+            <Footer />
+        {/if}
+    </svelte:fragment>
 </AppShell>
+
+<!-- remove to stop lowercased whole web -->
+<style lang="scss" global>
+	:global(.lowercase-text) {
+		text-transform: lowercase;
+	}
+	:global(.lowercase-text *) {
+		text-transform: lowercase;
+	}
+
+	:global(.no-lowercase) {
+		text-transform: none !important;
+	}
+
+	:global(.lowercase-text input),
+	:global(.lowercase-text textarea),
+	:global(.lowercase-text [contenteditable="true"]) {
+		text-transform: none;
+	}
+</style>

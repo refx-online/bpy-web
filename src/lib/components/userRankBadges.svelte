@@ -18,47 +18,47 @@
 <div class="flex flex-row gap-2 px-3 drop-shadow">
 	{#each groups as group}
 		{#if group == Privileges.ADMINISTRATOR}
-			<div class="tooltip text-red-600" aria-label="Administrator">
+			<div class="tooltip text-gray-600" aria-label="Administrator">
 				<Shield class="w-4 md:w-6 pointer-events-none" />
 			</div>
 		{/if}
 		{#if group == Privileges.MODERATOR}
-			<div class="tooltip text-rose-700" aria-label="Moderator">
+			<div class="tooltip text-gray-700" aria-label="Moderator">
 				<Server class="w-4 md:w-6 pointer-events-none" />
 			</div>
 		{/if}
 		{#if group == Privileges.DEVELOPER}
-			<div class="tooltip text-blue-500" aria-label="Developer">
+			<div class="tooltip text-gray-700" aria-label="Developer">
 				<Code class="w-4 md:w-6 pointer-events-none" />
 			</div>
 		{/if}
 		{#if group == Privileges.ALUMNI}
-			<div class="tooltip text-blue-500" aria-label="Alumni">
+			<div class="tooltip text-gray-600" aria-label="Alumni">
 				<BookOpen class="w-4 md:w-6 pointer-events-none" />
 			</div>
 		{/if}
 		{#if group == Privileges.NOMINATOR}
-			<div class="tooltip text-green-500" aria-label="Nominator">
+			<div class="tooltip text-gray-600" aria-label="Nominator">
 				<Map class="w-4 md:w-6 pointer-events-none" />
 			</div>
 		{/if}
 		{#if group == Privileges.TOURNEY_MANAGER}
-			<div class="tooltip text-amber-500" aria-label="Tourney Manager">
+			<div class="tooltip text-gray-500" aria-label="Tourney Manager">
 				<Award class="w-4 md:w-6 pointer-events-none" />
 			</div>
 		{/if}
 		{#if group == Privileges.PREMIUM}
-			<div class="tooltip text-amber-600" aria-label="Donator">
+			<div class="tooltip text-gray-500" aria-label="Donator">
 				<Hexagon class="w-4 md:w-6 pointer-events-none" />
 			</div>
 		{/if}
 		{#if group == Privileges.SUPPORTER}
-			<div class="tooltip text-pink-500" aria-label="Donator">
+			<div class="tooltip text-gray-400" aria-label="Donator">
 				<Heart class="w-4 md:w-6 pointer-events-none" />
 			</div>
 		{/if}
 		{#if group == Privileges.WHITELISTED}
-			<div class="tooltip text-green-400" aria-label="Verified">
+			<div class="tooltip text-gray-400" aria-label="Verified">
 				<CheckCircle class="w-4 md:w-6 pointer-events-none" />
 			</div>
 		{/if}

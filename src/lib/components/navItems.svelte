@@ -76,15 +76,26 @@
 	</a>
 
 	<a
-		href="/donate"
-		class="btn {$page.data.url == '/donate'
+		href="https://github.com/refx-online/refxUpdater/releases/tag/v0.0.1"
+		class="btn {$page.data.url == 'https://github.com/refx-online/refxUpdater/releases/tag/v0.0.1'
 			? 'variant-ghost-surface '
 			: 'hover:variant-outline-surface '}rounded-lg"
 		on:click={() => drawerStore.close()}
 	>
-		{__('Donate', $userLanguage)}
+		{__('client updater', $userLanguage)}
 	</a>
-
+	
+	{#if $page.data.currentUser}
+		<a
+			href="/settings"
+			class="btn {$page.data.url == '/settings'
+				? 'variant-ghost-surface '
+				: 'hover:variant-outline-surface '}rounded-lg"
+			on:click={() => drawerStore.close()}
+		>
+			{__('settings', $userLanguage)}
+		</a>
+    {/if}
 	<div class="h-full w-full flex flex-row justify-between items-end mt-auto">
 		<div class="md:hidden ms-auto">
 			<Popup event="click" placement="bottom">

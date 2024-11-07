@@ -53,7 +53,7 @@ export const getPlayerScores = async (opts: {
 	offset: number;
 	includeLoved?: boolean;
 	includeFailed?: boolean;
-	scope: 'best' | 'recent';
+	scope: 'best' | 'recent' | 'first';
 }): Promise<PlayerScores | undefined> => {
 	try {
 		const requestedMapData = await fetch(

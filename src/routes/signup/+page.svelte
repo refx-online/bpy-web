@@ -15,7 +15,7 @@
 	import Key from 'svelte-feathers/Key.svelte';
 	import { Turnstile } from 'svelte-turnstile';
 	import { fly, scale } from 'svelte/transition';
-	import { emailRegex, passwordRegex, usernameRegex } from '$lib/regex';
+	import { passwordRegex, usernameRegex } from '$lib/regex';
 
 	const turnstileSiteKey = env.PUBLIC_TURNSTILE_SITE_KEY;
 
@@ -23,7 +23,6 @@
 
 	const registerData = {
 		username: '',
-		email: '',
 		password: '',
 		passwordConfirm: '',
 		captchaToken: ''
@@ -144,30 +143,6 @@
 							: ''}"
 						bind:value={registerData.username}
 					/>
-					<input
-						id="email"
-						type="text"
-						placeholder={__('Email', $userLanguage)}
-						on:input={() => (errored = false)}
-						on:keypress={(e) => {
-							if (e.key === 'Enter') {
-								if (!emailRegex.test(registerData.email)) {
-									errored = true;
-									const t = {
-										message: __('Enter a valid email', $userLanguage),
-										classes: '!bg-red-700 !text-surface-100 !border-red-600 !border'
-									};
-									toastStore.trigger(t);
-									return;
-								}
-								passwordMask = true;
-							}
-						}}
-						class="border border-surface-700 bg-surface-900 rounded-lg !ring-pink-700 focus:!border-pink-700 p-4 text-[17px] mb-2 w-full transition-colors {errored
-							? 'input-error'
-							: ''}"
-						bind:value={registerData.email}
-					/>
 					<div class="w-full flex flex-row justify-between mt-auto mb-16">
 						<button
 							class="btn variant-ghost-tertiary !bg-transparent hover:!bg-surface-100/5 ring-0"
@@ -180,15 +155,6 @@
 									errored = true;
 									const t = {
 										message: __('Enter a valid username', $userLanguage),
-										classes: '!bg-red-700 !text-surface-100 !border-red-600 !border'
-									};
-									toastStore.trigger(t);
-									return;
-								}
-								if (!emailRegex.test(registerData.email)) {
-									errored = true;
-									const t = {
-										message: __('Enter a valid email', $userLanguage),
 										classes: '!bg-red-700 !text-surface-100 !border-red-600 !border'
 									};
 									toastStore.trigger(t);

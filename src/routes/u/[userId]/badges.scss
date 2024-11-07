@@ -5,47 +5,47 @@
 	clip-path: path(
 		'm 25,2.7 a 9.3,9.3 0 0 1 4.7,1.2 l 11.3,6.5 a 9.3,9.3 0 0 1 4.6,8.1 v 13.0 a 9.3,9.3 0 0 1 -4.6,8.1 L 29.7,46.1 a 9.3,9.3 0 0 1 -9.3,0 L 9.1,39.6 A 9.3,9.3 0 0 1 4.4,31.5 v -13.0 A 9.3,9.3 0 0 1 9.1,10.4 L 20.4,3.9 A 9.3,9.3 0 0 1 25,2.7 M 25,0.0 A 11.9,11.9 0 0 0 19.0,1.6 L 7.7,8.1 A 12.0,12.0 0 0 0 1.7,18.5 v 13.0 a 12.0,12.0 0 0 0 6.0,10.4 l 11.3,6.5 a 12.0,12.0 0 0 0 12.0,0 l 11.3,-6.5 a 12.0,12.0 0 0 0 6.0,-10.4 v -13.0 A 12.0,12.0 0 0 0 42.3,8.1 L 31.0,1.6 A 11.9,11.9 0 0 0 25.0,0 Z'
 	);
-	@apply bg-gradient-to-b from-[#f8e929] to-[#ee7efc];
+	@apply bg-gradient-to-b from-gray-400 to-gray-600;
 }
 
 @for $i from 0 through 19 {
 	.level-#{$i} {
-		@apply bg-gradient-to-b from-[#bbb5ac] to-[#bbb5ac];
+		@apply bg-gradient-to-b from-gray-300 to-gray-500;
 	}
 }
 
 @for $i from 20 through 39 {
 	.level-#{$i} {
-		@apply bg-gradient-to-b from-[#b1927b] to-[#84604a];
+		@apply bg-gradient-to-b from-gray-400 to-gray-600;
 	}
 }
 
 @for $i from 40 through 59 {
 	.level-#{$i} {
-		@apply bg-gradient-to-b from-[#dbe2ea] to-[#a8a3c4];
+		@apply bg-gradient-to-b from-gray-500 to-gray-700;
 	}
 }
 
 @for $i from 60 through 79 {
 	.level-#{$i} {
-		@apply bg-gradient-to-b from-[#eae7a4] to-[#ddce5b];
+		@apply bg-gradient-to-b from-gray-600 to-gray-800;
 	}
 }
 
 @for $i from 80 through 99 {
 	.level-#{$i} {
-		@apply bg-gradient-to-b from-[#abefee] to-[#5fe2dd];
+		@apply bg-gradient-to-b from-gray-700 to-gray-900;
 	}
 }
 
 @for $i from 100 through 104 {
 	.level-#{$i} {
-		@apply bg-gradient-to-b from-[#d6fad1] to-[#9fd297];
+		@apply bg-gradient-to-b from-gray-800 to-gray-950;
 	}
 }
 
 @for $i from 105 through 109 {
 	.level-#{$i} {
-		@apply bg-gradient-to-b from-[#a2d7fe] to-[#ee7efc];
+		@apply bg-gradient-to-b from-gray-900 to-black;
 	}
 }

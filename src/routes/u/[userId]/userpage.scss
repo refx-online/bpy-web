@@ -1,0 +1,58 @@
+.userpage {
+    &-img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 0.5rem;
+        margin: 0.5rem 0;
+    }
+
+    &-heading {
+        color: var(--color-primary-500);
+        font-size: 1.5rem;
+        font-weight: bold;
+        margin: 1rem 0;
+    }
+
+    &-notice {
+        background-color: var(--color-surface-700);
+        border: 2px solid var(--color-surface-500);
+        padding: 1rem;
+        margin: 1rem 0;
+        border-radius: 0.5rem;
+    }
+
+    &-quote {
+        background-color: var(--color-surface-800);
+        border-left: 4px solid var(--color-primary-500);
+        padding: 1rem;
+        margin: 1rem 0;
+    }
+
+    &-box {
+        padding: 1rem;
+        margin: 1rem 0;
+        border-radius: 0.5rem;
+    }
+
+    &-profile-link {
+        color: var(--color-primary-500);
+        text-decoration: none;
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}
+
+.spoiler {
+    background-color: #000;
+    color: transparent;
+    padding: 0.5rem;
+    cursor: pointer;
+    user-select: none;
+    border-radius: 0.25rem;
+
+    &.revealed {
+        background-color: transparent;
+        color: inherit;
+    }
+}

@@ -47,9 +47,6 @@
 		let mode = 0;
 		const urlParams = new URLSearchParams();
 
-		if (currentType == 'relax' && currentMode == 'mania') currentMode = 'osu';
-		if (currentType == 'autopilot' && currentMode != 'osu') currentMode = 'osu';
-
 		queryMode.set(currentMode);
 		queryType.set(currentType);
 		queryPage.set(currentPage.toFixed(0));
@@ -69,9 +66,6 @@
 		switch (currentType) {
 			case 'relax':
 				mode += 4;
-				break;
-			case 'autopilot':
-				mode += 8;
 				break;
 		}
 
@@ -142,7 +136,7 @@
 						on:click={() => setType('vanilla')}
 						disabled={loading || failed}
 					>
-						Vanilla
+						re;fx
 					</button>
 					<button
 						class="w-[100%] md:w-[25%] !scale-100 btn {currentType == 'relax'
@@ -151,20 +145,7 @@
 						on:click={() => setType('relax')}
 						disabled={currentMode == 'mania' || loading || failed}
 					>
-						Relax
-					</button>
-					<button
-						class="w-[100%] md:w-[25%] !scale-100 btn {currentType == 'autopilot'
-							? 'bg-surface-500'
-							: 'bg-surface-600'} rounded-lg rounded-l-none"
-						disabled={currentMode == 'taiko' ||
-							currentMode == 'catch' ||
-							currentMode == 'mania' ||
-							loading ||
-							failed}
-						on:click={() => setType('autopilot')}
-					>
-						Autopilot
+						Shaymi
 					</button>
 				</div>
 				<div class="w-full flex rounded-lg">
@@ -182,7 +163,7 @@
 							? 'bg-surface-500'
 							: 'bg-surface-600'} rounded-none"
 						on:click={() => setMode('taiko')}
-						disabled={currentType == 'autopilot' || loading || failed}
+						disabled={loading || failed}
 					>
 						taiko
 					</button>
@@ -191,7 +172,7 @@
 							? 'bg-surface-500'
 							: 'bg-surface-600'} rounded-none"
 						on:click={() => setMode('catch')}
-						disabled={currentType == 'autopilot' || loading || failed}
+						disabled={loading || failed}
 					>
 						catch
 					</button>
@@ -200,7 +181,7 @@
 							? 'bg-surface-500'
 							: 'bg-surface-600'} rounded-lg rounded-l-none"
 						on:click={() => setMode('mania')}
-						disabled={currentType == 'relax' || currentType == 'autopilot' || loading || failed}
+						disabled={loading || failed}
 					>
 						mania
 					</button>

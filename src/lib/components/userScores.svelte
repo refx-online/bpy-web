@@ -18,7 +18,7 @@
 
 	export let title: string;
 	export let userId: number;
-	export let scoresType: 'best' | 'recent';
+	export let scoresType: 'best' | 'recent' | 'first';
 	export let scoreAmount: number;
 	export let currentMode: string;
 	export let currentType: string;
@@ -49,9 +49,6 @@
 		switch (currentType) {
 			case 'relax':
 				mode += 4;
-				break;
-			case 'autopilot':
-				mode += 8;
 				break;
 		}
 
@@ -178,7 +175,7 @@
 									>
 										<a
 											class="btn variant-filled-surface text-sm rounded-lg"
-											href="{apiUrl}/v1/get_replay?id={score.id}"
+											href="{apiUrl}/v1/get_play?id={score.id}"
 										>
 											<Download class="pointer-events-none mr-2" size={16} />
 											{__('Download Replay', $userLanguage)}

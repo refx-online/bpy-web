@@ -71,7 +71,7 @@ export const register = async (opts: {
 		countryCode = 'xx';
 	}
 
-	const modeIds = [0, 1, 2, 3, 4, 5, 6, 8];
+	const modeIds = [0, 1, 2, 3, 4, 5, 6, 7];
 	const currentTimestamp = (Date.now() / 1000).toFixed();
 
 	await mysqlDatabase.transaction(async (trx) => {

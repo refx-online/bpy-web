@@ -6,9 +6,10 @@ const language: Language = {
 	translator: 'HorizonCode',
 	phrases: {
 		Leaderboards: 'Ranglisten',
-		Donate: 'Spenden',
 		'Who are you looking for?': 'Nach wem suchst du?',
 		Accuracy: 'Genauigkeit',
+		XP: 'XP',
+		settings: 'einstellungen',
 		'Play Count': 'Gespielt',
 		'Pass Count': 'Geschafft',
 		'Total Score': 'Gesamtpunktzahl',
@@ -92,6 +93,7 @@ const language: Language = {
 		'Most Played Beatmaps': 'Meistgespielte Beatmaps',
 		'Best Performance': 'Beste Performance',
 		Recent: 'Zuletzt gespielt',
+		'first place scores': 'Erster Platz',
 		'progress to next level': 'Fortschritt bis zum nächsten Level',
 		'View Leaderboards': 'Ranglisten anzeigen',
 		'View Profile': 'Profil anzeigen'

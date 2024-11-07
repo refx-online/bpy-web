@@ -27,6 +27,9 @@
 				<th class="text-center uppercase text-2xs text-surface-300 font-bold !pb-0"
 					>{__('Accuracy', $userLanguage)}</th
 				>
+				<th class="text-center uppercase text-2xs text-surface-300 font-bold !pb-0"
+					>{__('XP', $userLanguage)}</th
+				>
 				<th
 					class="text-center uppercase text-2xs {currentSort == 'plays'
 						? 'text-surface-50'
@@ -80,6 +83,10 @@
 								<td
 									class="!text-xs font-semibold text-center w-[10%] text-surface-300 whitespace-nowrap content-center"
 									>{removeTrailingZeroes(user.acc)}%</td
+								>
+								<td
+									class="!text-xs font-semibold text-center w-[10%] text-surface-300 whitespace-nowrap content-center"
+									>{numberHumanReadable(user.xp)}</td
 								>
 								{#key user}
 									<td

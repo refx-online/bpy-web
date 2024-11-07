@@ -106,6 +106,12 @@
 		interpolate: (a, b) => (t) => Math.trunc(a + (b - a) * t)
 	});
 
+	let experiencePoints = tweened(0, {
+		duration: 500,
+		easing: cubicInOut,
+		interpolate: (a, b) => (t) => Math.trunc(a + (b - a) * t)
+	});
+
 	let playTime = tweened(0, {
 		duration: 500,
 		easing: cubicInOut,
@@ -143,12 +149,10 @@
 	});
 
 	const modes = ['osu', 'taiko', 'catch', 'mania'];
-	const types = ['vanilla', 'relax', 'autopilot'];
+	const types = ['vanilla', 'relax'];
 
 	const updateModeInt = async () => {
 		loading = true;
-		if (currentType == 'relax' && currentMode == 'mania') currentMode = 'osu';
-		if (currentType == 'autopilot' && currentMode != 'osu') currentMode = 'osu';
 
 		queryMode.set(currentMode);
 		queryType.set(currentType);
@@ -170,9 +174,6 @@
 			case 'relax':
 				mode += 4;
 				break;
-			case 'autopilot':
-				mode += 8;
-				break;
 		}
 		currentModeInt = mode;
 
@@ -188,6 +189,7 @@
 			maxCombo.set(data.user.stats[currentModeInt].max_combo);
 			replayViews.set(data.user.stats[currentModeInt].replay_views);
 			performancePoints.set(data.user.stats[currentModeInt].pp);
+			experiencePoints.set(data.user.stats[currentModeInt].xp);
 			playTime.set(data.user.stats[currentModeInt].playtime);
 			xhGrade.set(data.user.stats[currentModeInt].xh_count);
 			xGrade.set(data.user.stats[currentModeInt].x_count);
@@ -257,29 +259,16 @@
 									on:click={() => setType('vanilla')}
 									disabled={loading || failed}
 								>
-									Vanilla
+									re;fx
 								</button>
 								<button
 									class="w-[100%] md:w-[25%] !scale-100 btn {currentType == 'relax'
 										? 'bg-surface-500'
 										: 'bg-surface-600'} rounded-none"
 									on:click={() => setType('relax')}
-									disabled={currentMode == 'mania' || loading || failed}
+									disabled={loading || failed}
 								>
-									Relax
-								</button>
-								<button
-									class="w-[100%] md:w-[25%] !scale-100 btn {currentType == 'autopilot'
-										? 'bg-surface-500'
-										: 'bg-surface-600'} rounded-lg rounded-l-none"
-									disabled={currentMode == 'taiko' ||
-										currentMode == 'catch' ||
-										currentMode == 'mania' ||
-										loading ||
-										failed}
-									on:click={() => setType('autopilot')}
-								>
-									Autopilot
+									Shaymi
 								</button>
 							</div>
 							<div class="w-full flex rounded-lg">
@@ -297,7 +286,7 @@
 										? 'bg-surface-500'
 										: 'bg-surface-600'} rounded-none"
 									on:click={() => setMode('taiko')}
-									disabled={currentType == 'autopilot' || loading || failed}
+									disabled={loading || failed}
 								>
 									taiko
 								</button>
@@ -306,7 +295,7 @@
 										? 'bg-surface-500'
 										: 'bg-surface-600'} rounded-none"
 									on:click={() => setMode('catch')}
-									disabled={currentType == 'autopilot' || loading || failed}
+									disabled={loading || failed}
 								>
 									catch
 								</button>
@@ -315,10 +304,7 @@
 										? 'bg-surface-500'
 										: 'bg-surface-600'} rounded-lg rounded-l-none"
 									on:click={() => setMode('mania')}
-									disabled={currentType == 'relax' ||
-										currentType == 'autopilot' ||
-										loading ||
-										failed}
+									disabled={loading || failed}
 								>
 									mania
 								</button>
@@ -459,6 +445,12 @@
 										>
 									</div>
 									<div class="flex flex-col w-[50%] md:w-fit">
+										<span class="text-xs">{__('XP', $userLanguage)}</span>
+										<span class="text-normal font-semibold text-primary-200"
+											>{numberHumanReadable($experiencePoints)}</span
+										>
+									</div>
+									<div class="flex flex-col w-[50%] md:w-fit">
 										<span class="text-xs">{__('Total Play Time', $userLanguage)}</span>
 										<span
 											class="text-normal font-semibold text-primary-200 tooltip"
@@ -572,6 +564,15 @@
 										userId={data.user.info.id}
 										scoreAmount={5}
 										scoresType="best"
+									/>
+
+									<UserScores
+										title="first place scores"
+										{currentMode}
+										{currentType}
+										userId={data.user.info.id}
+										scoreAmount={5}
+										scoresType="first"
 									/>
 
 									<UserScores

@@ -10,8 +10,8 @@
 	import { userLanguage } from '$lib/storage';
 
 	const modes = ['osu', 'taiko', 'catch', 'mania'];
-	const types = ['vanilla', 'relax', 'autopilot'];
-	const sorts = ['pp', 'tscore', 'plays'];
+	const types = ['vanilla', 'relax'];
+	const sorts = ['pp', 'tscore', 'xp'];
 
 	let currentLeaderboard: LBUser[] = [];
 	const usersPerPage = 50;
@@ -54,9 +54,6 @@
 		let mode = 0;
 		const urlParams = new URLSearchParams();
 
-		if (currentType == 'relax' && currentMode == 'mania') currentMode = 'osu';
-		if (currentType == 'autopilot' && currentMode != 'osu') currentMode = 'osu';
-
 		queryMode.set(currentMode);
 		queryType.set(currentType);
 		querySort.set(currentSort);
@@ -77,9 +74,6 @@
 		switch (currentType) {
 			case 'relax':
 				mode += 4;
-				break;
-			case 'autopilot':
-				mode += 8;
 				break;
 		}
 
@@ -171,13 +165,13 @@
 					{__('Total Score', $userLanguage)}
 				</button>
 				<button
-					class="w-[50%] md:w-[100%] !scale-100 btn {currentSort == 'plays'
+					class="w-[50%] md:w-[100%] !scale-100 btn {currentSort == 'xp'
 						? 'bg-surface-500'
 						: 'bg-surface-600'} rounded-lg md:rounded-l-none"
-					on:click={() => setSort('plays')}
+					on:click={() => setSort('xp')}
 					disabled={loading || failed}
 				>
-					{__('Play Count', $userLanguage)}
+					{__('XP', $userLanguage)}
 				</button>
 			</div>
 			<div class="grid md:grid-cols-[auto_auto] gap-2 p-3">
@@ -189,29 +183,16 @@
 						on:click={() => setType('vanilla')}
 						disabled={loading || failed}
 					>
-						Vanilla
+						re;fx
 					</button>
 					<button
 						class="w-[100%] md:w-[25%] !scale-100 btn {currentType == 'relax'
 							? 'bg-surface-500'
 							: 'bg-surface-600'} rounded-none"
 						on:click={() => setType('relax')}
-						disabled={currentMode == 'mania' || loading || failed}
+						disabled={loading || failed}
 					>
-						Relax
-					</button>
-					<button
-						class="w-[100%] md:w-[25%] !scale-100 btn {currentType == 'autopilot'
-							? 'bg-surface-500'
-							: 'bg-surface-600'} rounded-lg rounded-l-none"
-						disabled={currentMode == 'taiko' ||
-							currentMode == 'catch' ||
-							currentMode == 'mania' ||
-							loading ||
-							failed}
-						on:click={() => setType('autopilot')}
-					>
-						Autopilot
+						Shaymi
 					</button>
 				</div>
 				<div class="w-full flex rounded-lg">
@@ -229,7 +210,7 @@
 							? 'bg-surface-500'
 							: 'bg-surface-600'} rounded-none"
 						on:click={() => setMode('taiko')}
-						disabled={currentType == 'autopilot' || loading || failed}
+						disabled={loading || failed}
 					>
 						taiko
 					</button>
@@ -238,7 +219,7 @@
 							? 'bg-surface-500'
 							: 'bg-surface-600'} rounded-none"
 						on:click={() => setMode('catch')}
-						disabled={currentType == 'autopilot' || loading || failed}
+						disabled={loading || failed}
 					>
 						catch
 					</button>
@@ -247,7 +228,7 @@
 							? 'bg-surface-500'
 							: 'bg-surface-600'} rounded-lg rounded-l-none"
 						on:click={() => setMode('mania')}
-						disabled={currentType == 'relax' || currentType == 'autopilot' || loading || failed}
+						disabled={loading || failed}
 					>
 						mania
 					</button>

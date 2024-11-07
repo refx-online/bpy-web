@@ -1,52 +1,64 @@
 <script>
 	import { appName } from '$lib/env';
 	import { __ } from '$lib/language';
-	import { userData, userLanguage } from '$lib/storage';
+	import { userLanguage } from '$lib/storage';
 
 	export let data;
 </script>
 
 <svelte:head>
-	<title>{appName} :: Home</title>
+	<title>{appName} :: home</title>
 </svelte:head>
 
-<div class="h-full w-screen">
-	<div class="bg-primary-500/30 w-screen h-full">
-		<div class="h-full flex flex-col justify-center items-center text-center gap-5">
-			<div class="flex flex-col gap-10">
-				<h1 class="h1 font-bold">{appName}</h1>
-				<h4 class="h4">
-					bpy-web is a frontend for bancho.py made with modern frameworks for the best user
-					experience.
-				</h4>
-			</div>
-			<div class="flex flex-row gap-3">
-				{#if $userData}
-					<a class="btn variant-filled-surface rounded-lg font-semibold" href="/leaderboards">
-						{__('View Leaderboards', $userLanguage)}
-					</a>
-					<a class="btn variant-filled-tertiary rounded-lg" href="/u/{$userData.id}">
-						{__('View Profile', $userLanguage)}
-					</a>
-				{:else}
-					<a class="btn variant-filled-surface rounded-lg font-semibold" href="/signup">
-						{__('Sign Up', $userLanguage)}
-					</a>
-					<a class="btn variant-filled-tertiary rounded-lg" href="/signin">
-						{__('Sign In', $userLanguage)}
-					</a>
-				{/if}
-			</div>
-			<div class="flex flex-row gap-3">
-				<p class="bg-black/50 rounded-full py-1 px-6">
-					<span class="font-bold text-green-400">{data.userCounts?.counts.online}</span>
-					{__('online users', $userLanguage)}
-				</p>
-				<p class="bg-black/50 rounded-full py-1 px-6">
-					<span class="font-bold text-primary-400">{data.userCounts?.counts.total}</span>
-					{__('registered users', $userLanguage)}
-				</p>
-			</div>
+<div class="bg-container">
+	<div class="overlay">
+	  <div class="container mx-auto px-4 py-8">
+		<div class="flex flex-col items-center justify-center min-h-[50vh] text-center">
+		  <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4">
+			{appName}
+		  </h1>
+		  <p class="text-lg md:text-xl text-white/90 max-w-2xl">
+			yo we using <a href="https://github.com/HorizonCode/bpy-web">bpy-web</a>
+		  </p>
 		</div>
+  
+		<div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
+		  <div class="card p-6 variant-glass-surface">
+			<h3 class="text-2xl font-semibold mb-4">
+			  {__('online users', $userLanguage)}
+			</h3>
+			<p class="text-4xl font-bold">{data.userCounts?.counts.online ?? 0}</p>
+		  </div>
+  
+		  <div class="card p-6 variant-glass-surface">
+			<h3 class="text-2xl font-semibold mb-4">
+			  {__('registered users', $userLanguage)}
+			</h3>
+			<p class="text-4xl font-bold">{data.userCounts?.counts.total ?? 0}</p>
+		  </div>
+		</div>
+	  </div>
 	</div>
-</div>
+  </div>
+  
+  <style lang="scss">
+	.bg-container {
+	  background-image: url('/main.jpg');
+	  background-size: cover;
+	  background-position: center;
+	  background-repeat: no-repeat;
+	  min-height: 100vh;
+	  width: 100%;
+	}
+  
+	.overlay {
+	  background-color: rgba(0, 0, 0, 0.6);
+	  min-height: 100vh;
+	  width: 100%;
+	}
+  
+	:global(.variant-glass-surface) {
+	  background-color: rgba(var(--color-surface-500) / 0.8) !important;
+	  backdrop-filter: blur(8px);
+	}
+  </style>

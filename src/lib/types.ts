@@ -38,6 +38,7 @@ export type LBUser = {
 	plays: number;
 	playtime: number;
 	pp: number;
+	xp: number;
 	rscore: number;
 	s_count: number;
 	sh_count: number;
@@ -50,6 +51,7 @@ export type UserModeStats = {
 	tscore: number;
 	rscore: number;
 	pp: number;
+	xp: number;
 	plays: number;
 	playtime: number;
 	acc: number;
