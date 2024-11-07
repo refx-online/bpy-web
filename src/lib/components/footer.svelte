@@ -7,11 +7,7 @@
     import { slide } from 'svelte/transition';
     import { browser } from '$app/environment';
 
-    const initialState = browser ? 
-        localStorage.getItem('footerState') !== 'false' : 
-        true;
-    
-    const showFooter = writable(initialState);
+    const showFooter = writable(false);
 
     if (browser) {
         showFooter.subscribe(value => {
