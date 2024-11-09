@@ -24,9 +24,9 @@
 							<button
 								class="w-32 btn variant-filled-surface rounded-lg"
 								on:click={() => {
-									goto(`/u/${$userData?.id}`);
+									goto(`/settings`);
 									drawerStore.close();
-								}}>{__('Profile', $userLanguage)}</button
+								}}>{__('settings', $userLanguage)}</button
 							>
 							<a class="w-32 btn variant-filled-surface rounded-lg" href="/logout"
 								>{__('Logout', $userLanguage)}</a
@@ -85,17 +85,36 @@
 		{__('client updater', $userLanguage)}
 	</a>
 	
-	{#if $page.data.currentUser}
-		<a
-			href="/settings"
-			class="btn {$page.data.url == '/settings'
-				? 'variant-ghost-surface '
-				: 'hover:variant-outline-surface '}rounded-lg"
-			on:click={() => drawerStore.close()}
-		>
-			{__('settings', $userLanguage)}
-		</a>
-    {/if}
+	<a
+		href="/donate"
+		class="btn {$page.data.url == '/donate'
+			? 'variant-ghost-surface '
+			: 'hover:variant-outline-surface '}rounded-lg"
+		on:click={() => drawerStore.close()}
+	>
+		{__('Donate', $userLanguage)}
+	</a>
+
+	<a
+		href="/rules"
+		class="btn {$page.data.url == '/rules'
+			? 'variant-ghost-surface '
+			: 'hover:variant-outline-surface '}rounded-lg"
+		on:click={() => drawerStore.close()}
+	>
+		{__('Rules', $userLanguage)}
+	</a>
+
+	<a
+		href="/top"
+		class="btn {$page.data.url == '/top'
+			? 'variant-ghost-surface '
+			: 'hover:variant-outline-surface '}rounded-lg"
+		on:click={() => drawerStore.close()}
+	>
+		{__('Top Plays', $userLanguage)}
+	</a>
+
 	<div class="h-full w-full flex flex-row justify-between items-end mt-auto">
 		<div class="md:hidden ms-auto">
 			<Popup event="click" placement="bottom">

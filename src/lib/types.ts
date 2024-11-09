@@ -293,3 +293,17 @@ export type PlayerStatus = {
 		};
 	};
 };
+
+export type TopScore = {
+    scoreid: number;
+    userid: number;
+    pp: number;
+    mods: number;
+    grade: string;
+    set_id: number;
+    title: string;
+    version: string;
+    country: string;
+    username: string;
+    map_id: number;
+};

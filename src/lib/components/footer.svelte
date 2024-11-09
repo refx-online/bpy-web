@@ -67,9 +67,8 @@
 
                         <div>
                             <h3 class="font-semibold mb-1">{__('Info', $userLanguage)}</h3>
-                            <ul class="space-y-0.5"> <!-- TODO: make these -->
+                            <ul class="space-y-0.5">
                                 <li><a href="/rules" class="hover:text-primary-400 transition-colors">{__('Rules', $userLanguage)}</a></li>
-                                <li><a href="/cheat_info" class="hover:text-primary-400 transition-colors">{__('Cheat Info', $userLanguage)}</a></li>
                             </ul>
                         </div>
                     </div>

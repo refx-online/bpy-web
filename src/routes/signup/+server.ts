@@ -60,7 +60,6 @@ export const POST = async ({ cookies, request, getClientAddress }) => {
 	const registerAction = await register({
 		username: bodyData.username,
 		password: bodyData.password,
-		email: bodyData.email,
 		ip: clientIP
 	});
 

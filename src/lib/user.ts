@@ -2,7 +2,7 @@ import { getMySQLDatabase, getRedisClient } from '../hooks.server';
 import crypto from 'crypto';
 import bcrypt from 'bcrypt';
 import type { DBUser } from './types';
-import { emailRegex, passwordRegex, usernameRegex } from './regex';
+import { passwordRegex, usernameRegex } from './regex';
 import { getInfoFromIP } from './geoloc';
 
 export const createPassword = (plainPassword: string): Promise<string> => {
@@ -21,10 +21,9 @@ export async function comparePasswords(plainPassword: string, hashed_pw: string)
 export const register = async (opts: {
 	username: string;
 	password: string;
-	email: string;
 	ip: string;
 }): Promise<{ succeeded: boolean; message: string }> => {
-	const { username, password, email, ip } = opts;
+	const { username, password, ip } = opts;
 
 	if (!usernameRegex.test(username)) {
 		return {
@@ -40,20 +39,7 @@ export const register = async (opts: {
 		};
 	}
 
-	if (!emailRegex.test(email)) {
-		return {
-			succeeded: false,
-			message: 'Invalid email'
-		};
-	}
-
 	const mysqlDatabase = await getMySQLDatabase();
-	const emailResult = await mysqlDatabase<DBUser>('users').where('email', email).limit(1).first();
-	if (emailResult)
-		return {
-			succeeded: false,
-			message: 'a user with this email already exists'
-		};
 
 	const userResult = await mysqlDatabase<DBUser>('users').where('name', username).limit(1).first();
 	if (userResult)
@@ -78,7 +64,6 @@ export const register = async (opts: {
 		const userIdInsert = await trx('users').insert({
 			name: username,
 			safe_name: safeName,
-			email,
 			pw_bcrypt: hashedPassword,
 			country: countryCode,
 			creation_time: currentTimestamp,
@@ -110,8 +95,7 @@ export const login = async (opts: {
 	const mysqlDatabase = await getMySQLDatabase();
 	const userResult = await mysqlDatabase<DBUser>('users')
 		.where(function () {
-			if (username.includes('@')) this.where('email', username);
-			else this.where('name', username);
+			this.where('name', username);
 		})
 		.limit(1)
 		.first();

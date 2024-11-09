@@ -22,7 +22,23 @@ const language: Language = {
         'Rules': 'Aturan',
         'All rights reserved.': 'Seluruh hak dilindungi.',
         'Not affiliated with ppy or osu!.': 'Tidak berafiliasi dengan ppy atau osu!.',
+        // dear god
+        // TODO: cheatinfo and donate, too lazy for now
         'Cheat Info': 'Info Cheat',
+        "There's rules?": 'Ada aturan?',
+        'Use common sense': 'Gunakan akal sehat',
+        'This includes being respectful to each other when interacting, as well as not doing (or abusing) things that are unintended.': 'Ini termasuk saling menghormati saat berinteraksi, serta tidak melakukan (atau menyalahgunakan) hal-hal yang tidak dimaksudkan.',
+        'If you happen to find bugs, please inform one of our developer on our discord.': 'Jika Anda menemukan bug, harap beri tahu salah satu pengembang kami di Discord kami.',
+        "Don't create multiple accounts": 'Jangan buat beberapa akun',
+        'As you are probably used from the official osu! servers, creating more than one account per person is a bannable offense.': 'Seperti yang mungkin Anda ketahui dari server osu! resmi, membuat lebih dari satu akun per orang adalah pelanggaran yang dapat di-banned.',
+        "Don't use auto": 'Jangan gunakan auto',
+        'Recent update from this server allows other clients/stable to be able to connect to our server,': 'Pembaruan terbaru dari server ini memungkinkan klien lain / stable untuk terhubung ke server kami,',
+        'no rule for this yet but it should be obvious that auto is a bannable offense.': 'belum ada aturan untuk ini tetapi seharusnya jelas bahwa auto adalah pelanggaran yang dapat di-banned.',
+        'Additional Information': 'Informasi Tambahan',
+        'Where do I report a user that breaks the rules?': 'Di mana saya melaporkan pengguna yang melanggar aturan?',
+        'To report a user, please report to a moderator on our Discord. Everything further will be handled with them': 'Untuk melaporkan pengguna, silakan laporkan kepada moderator di Discord kami. Segala sesuatu selanjutnya akan ditangani oleh mereka.',
+        'How do I appeal my punishment?': 'Bagaimana cara saya mengajukan banding atas hukuman saya?',
+        'To appeal your punishment, please direct message one of our moderator on our Discord. They will reach out to you, discussing your punishment and a more detailed appeal from your side.': 'Untuk mengajukan banding atas hukuman Anda, silakan kirim pesan langsung ke salah satu moderator kami di Discord kami. Mereka akan menghubungi Anda, mendiskusikan hukuman Anda dan permohonan banding yang lebih rinci dari pihak Anda.',
 
         Accuracy: 'Akurasi',
         'Play Count': 'Jumlah Main',
