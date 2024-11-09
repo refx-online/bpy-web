@@ -49,7 +49,7 @@ export const getTopScores = async (opts: {
 		// me when raw
         const scores = await mysqlDB.raw(`
             SELECT s.status, s.id as scoreid, s.userid, s.pp, s.mods, s.grade, 
-                   m.set_id, m.title, m.version, 
+                   m.set_id, m.title, m.version, m.artist, 
                    u.country, u.name as username,
                    m.id as map_id
             FROM scores s 

@@ -112,6 +112,7 @@
         
                     <div class="p-2">
                         <a href="/beatmaps/{score.map_id}" class="block hover:text-blue-400">
+                            <div class="text-zinc-200 text-sm truncate">{score.artist} -</div>
                             <div class="text-zinc-200 text-sm truncate">{score.title}</div>
                             <div class="text-zinc-400 text-xs">[{score.version}]</div>
                         </a>

@@ -10,17 +10,6 @@ export async function GET({ params }) {
     const coverPath = path.join(coversFolder, `${userId}.jpg`);
 
     if (!existsSync(coverPath)) {
-        const defaultCoverPath = path.join(coversFolder, `default.jpg`);
-        if (existsSync(defaultCoverPath)) {
-            const cover = await readFile(defaultCoverPath);
-            return new Response(cover, {
-                status: 200,
-                headers: {
-                    'Content-Type': 'image/jpeg'
-                }
-            });
-        }
-
         return error(404, 'Cover not found');
     }
 

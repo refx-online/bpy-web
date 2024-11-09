@@ -303,6 +303,7 @@ export type TopScore = {
     set_id: number;
     title: string;
     version: string;
+	artist: string;
     country: string;
     username: string;
     map_id: number;
