@@ -57,6 +57,23 @@
 
 <div class="min-h-screen bg-surface-900">
     <div class="container mx-auto p-4">
+        <div class="flex justify-center gap-4 mb-4">
+            <button 
+                class="px-4 py-1 rounded text-sm font-medium transition-colors
+                       {currentType === 'vanilla' ? 'bg-zinc-500 text-white' : 'bg-surface-900 text-zinc-400 hover:bg-zinc-700'}"
+                on:click={toggleType}
+            >
+                re;fx
+            </button>
+            <button 
+                class="px-4 py-1 rounded text-sm font-medium transition-colors
+                       {currentType === 'relax' ? 'bg-zinc-500 text-white' : 'bg-surface-900 text-zinc-400 hover:bg-zinc-700'}"
+                on:click={toggleType}
+            >
+                Shaymi
+            </button>
+        </div>
+
         <div class="flex justify-center gap-4 mb-8">
             <div class="flex gap-2">
                 {#each modes as mode}
@@ -68,22 +85,6 @@
                         {mode === 'catch' ? 'ctb' : mode}
                     </button>
                 {/each}
-            </div>
-            <div class="flex gap-2">
-                <button 
-                    class="px-4 py-1 rounded text-sm font-medium transition-colors
-                           {currentType === 'vanilla' ? 'bg-zinc-500 text-white' : 'bg-surface-900 text-zinc-400 hover:bg-zinc-700'}"
-                    on:click={toggleType}
-                >
-                    re;fx
-                </button>
-                <button 
-                    class="px-4 py-1 rounded text-sm font-medium transition-colors
-                           {currentType === 'relax' ? 'bg-zinc-500 text-white' : 'bg-surface-900 text-zinc-400 hover:bg-zinc-700'}"
-                    on:click={toggleType}
-                >
-                    Shaymi
-                </button>
             </div>
         </div>
 
