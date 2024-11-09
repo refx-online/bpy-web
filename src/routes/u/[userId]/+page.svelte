@@ -319,7 +319,7 @@
 					{#if $userData?.id == data.user.info.id}
 						<a
 							class="btn btn-icon variant-filled-surface absolute flex justify-center items-center bottom-2 right-2 h-10 w-10"
-							href="/settings/cover"
+							href="/settings"
 						>
 							<Edit2 class="pointer-events-none" size={20} />
 						</a>

@@ -73,7 +73,7 @@
                 <li>
                     <strong>{t("Don't use auto")}</strong>
                     <p>
-                        {t('Recent update from this server allows other client / stable be able to connect to our server,')}
+                        {t('Recent update from this server allows other client/stable be able to connect to our server,')}
                         {t('no rule for this yet but it should be obvious that auto is a bannable offense.')}
                     </p>
                 </li>

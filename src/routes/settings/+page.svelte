@@ -15,6 +15,7 @@
 
     let selectedLanguage = $userLanguage;
     let avatarFile: FileList;
+    let coverFile: FileList;
     let newUsername = '';
     let usernameError = '';
     let message = '';
@@ -53,6 +54,34 @@
         } catch (err) {
             console.error('Error uploading avatar:', err);
             message = __('An error occurred while uploading the avatar', $userLanguage);
+        } finally {
+            isLoading = false;
+        }
+    }
+
+    async function handleCoverUpload() {
+        if (!coverFile?.[0]) return;
+        isLoading = true;
+        message = '';
+
+        try {
+            const formData = new FormData();
+            formData.append('cover', coverFile[0]);
+
+            const response = await fetch('/settings/cover', {
+                method: 'POST',
+                body: formData,
+            });
+
+            if (response.ok) {
+                message = __('Cover updated successfully, ctrl + f5 to reload', $userLanguage);
+                await invalidateAll();
+            } else {
+                message = __('An error occurred while uploading the cover', $userLanguage);
+            }
+        } catch (err) {
+            console.error('Error uploading cover:', err);
+            message = __('An error occurred while uploading the cover', $userLanguage);
         } finally {
             isLoading = false;
         }
@@ -108,6 +137,36 @@
                                 disabled={!avatarFile?.[0]}
                             >
                                 {__('Upload Avatar', $userLanguage)}
+                            </button>
+                            <p class="text-sm">
+                                {__('maximum size: 2MB. supported formats: JPG, PNG', $userLanguage)}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="space-y-4">
+                    <h2 class="text-xl font-semibold">{__('Cover Image', $userLanguage)}</h2>
+                    <div class="flex items-center space-x-4">
+                        {#if coverFile}
+                            <img
+                                src={URL.createObjectURL(coverFile[0])}
+                                alt="Selected Cover Preview"
+                                class="w-full h-32 object-cover"
+                            />
+                        {/if}
+                        <div class="space-y-2">
+                            <input
+                                type="file"
+                                accept="image/jpeg,image/png"
+                                bind:files={coverFile}
+                                class="input"
+                            />
+                            <button
+                                class="btn variant-filled-primary"
+                                on:click={handleCoverUpload}
+                                disabled={!coverFile?.[0]}
+                            >
+                                {__('Upload Cover', $userLanguage)}
                             </button>
                             <p class="text-sm">
                                 {__('maximum size: 2MB. supported formats: JPG, PNG', $userLanguage)}
