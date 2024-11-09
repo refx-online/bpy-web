@@ -32,7 +32,7 @@ const language: Language = {
         "Don't create multiple accounts": 'Jangan buat beberapa akun',
         'As you are probably used from the official osu! servers, creating more than one account per person is a bannable offense.': 'Seperti yang mungkin Anda ketahui dari server osu! resmi, membuat lebih dari satu akun per orang adalah pelanggaran yang dapat di-banned.',
         "Don't use auto": 'Jangan gunakan auto',
-        'Recent update from this server allows other clients/stable to be able to connect to our server,': 'Pembaruan terbaru dari server ini memungkinkan klien lain / stable untuk terhubung ke server kami,',
+        'Recent update from this server allows other client/stable be able to connect to our server,': 'Pembaruan terbaru dari server ini memungkinkan klien lain / stable untuk terhubung ke server kami,',
         'no rule for this yet but it should be obvious that auto is a bannable offense.': 'belum ada aturan untuk ini tetapi seharusnya sudah jelas bahwa auto adalah pelanggaran yang dapat di-banned.',
         'Additional Information': 'Informasi Tambahan',
         'Where do I report a user that breaks the rules?': 'Di mana saya melaporkan pengguna yang melanggar aturan?',
