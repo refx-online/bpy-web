@@ -244,6 +244,9 @@
 														on:click={() => goto(`/u/${$userData?.id}`)}
 														>{__('Profile', $userLanguage)}</button
 													>
+													<a class="w-32 btn variant-filled-surface rounded-lg" href="/settings"
+														>{__('settings', $userLanguage)}</a
+													>
 													<a class="w-32 btn variant-filled-surface rounded-lg" href="/logout"
 														>{__('Logout', $userLanguage)}</a
 													>
