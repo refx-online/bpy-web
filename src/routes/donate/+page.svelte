@@ -28,15 +28,15 @@
 
 </script>
 
-<div class="min-h-screen bg-surface-50 dark:bg-surface-900 relative overflow-hidden">
+<div class="min-h-screen bg-surface-50 dark:bg-surface-900 relative z-[1] overflow-hidden">
     {#if mounted}
-        <div class="absolute inset-0 opacity-20 blur-3xl">
+        <div class="absolute inset-0 opacity-20 blur-3xl z-[0]">
             <div class="absolute w-80 h-80 bg-primary-500/50 rounded-full -top-10 -left-10"></div>
             <div class="absolute w-96 h-96 bg-secondary-500/50 rounded-full -bottom-20 -right-20"></div>
         </div>
     {/if}
 
-    <div class="container mx-auto px-4 py-16 relative z-10">
+    <div class="container mx-auto px-4 py-16 relative z-[2]">
         <div class="text-center mb-12">
             <h1 class="text-4xl font-bold mb-4 dark:text-white">
                 {__('Support the Project', $userLanguage)}
@@ -94,12 +94,12 @@
     </div>
 
     {#if mounted}
-        <div class="absolute bottom-0 left-0 opacity-20 pointer-events-none">
+        <div class="absolute bottom-0 left-0 opacity-20 pointer-events-none z-[0]">
             <svg width="200" height="200" viewBox="0 0 100 100">
                 <circle cx="50" cy="50" r="40" fill="brown" opacity="0.1"/>
             </svg>
         </div>
-        <div class="absolute top-0 right-0 opacity-20 pointer-events-none">
+        <div class="absolute top-0 right-0 opacity-20 pointer-events-none z-[0]">
             <svg width="250" height="250" viewBox="0 0 100 100">
                 <circle cx="50" cy="50" r="30" fill="brown" opacity="0.1"/>
             </svg>

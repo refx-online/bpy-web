@@ -1,6 +1,7 @@
 import { apiUrl } from './env';
 import type {
 	Clan,
+	getScoreInfo,
 	MapInfo,
 	MapScores,
 	PlayerCounts,
@@ -53,7 +54,7 @@ export const getPlayerScores = async (opts: {
 	offset: number;
 	includeLoved?: boolean;
 	includeFailed?: boolean;
-	scope: 'best' | 'recent' | 'first';
+	scope: 'best' | 'recent' | 'first' | 'pinned';
 }): Promise<PlayerScores | undefined> => {
 	try {
 		const requestedMapData = await fetch(
@@ -114,6 +115,72 @@ export const getPlayer = async (
 		);
 		if (!requestedPlayerData.ok) return undefined;
 		return (await requestedPlayerData.json()) as User;
+	} catch {
+		return undefined;
+	}
+};
+
+export const pinScore = async (
+	scoreid: number, 
+	isPinned: boolean, 
+	currentUserId: number, 
+	userId: number
+) => {
+    try {
+        const response = await fetch('/stuff/pin-score', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ scoreid, isPinned, currentUserId, userId })
+        });
+
+        if (!response.ok) {
+            const errorData = await response.json();
+            throw new Error(errorData.message || 'Failed to pin/unpin score');
+        }
+
+        return await response.json();
+    } catch (error) {
+        console.error('Error pinning/unpinning score:', error);
+        throw error;
+    }
+};
+
+export async function sendDiscordWebhookLog(logType:string, message: string) {
+    try {
+        const webhookUrl = import.meta.env.VITE_DISCORD_WEBHOOK_LOG_URL;
+        if (!webhookUrl) {
+            console.error('Discord webhook URL is not set');
+            return;
+        }
+
+        const response = await fetch(webhookUrl, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                content: message,
+                username: logType
+            })
+        });
+
+        if (!response.ok) {
+            console.error('Failed to send Discord webhook', await response.text());
+        }
+    } catch (error) {
+        console.error('Error sending Discord webhook:', error);
+    }
+}
+
+export const getScoresInfo = async (
+	scoreId: number
+): Promise<getScoreInfo | undefined> => {
+	try {
+		const requestedPlayerData = await fetch(`${apiUrl}/v1/get_score_info?id=${scoreId}`);
+		if (!requestedPlayerData.ok) return undefined;
+		return (await requestedPlayerData.json()) as getScoreInfo;
 	} catch {
 		return undefined;
 	}

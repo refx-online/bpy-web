@@ -41,18 +41,6 @@
     function getBeatmapCoverUrl(setId: number) {
         return `https://assets.ppy.sh/beatmaps/${setId}/covers/cover.jpg`;
     }
-
-    // TODO: use a better grade
-    const gradeClasses = {
-        ss: 'text-yellow-400',
-        ssh: 'text-yellow-400',
-        s: 'text-orange-400',
-        sh: 'text-orange-400',
-        a: 'text-green-500',
-        b: 'text-blue-400',
-        c: 'text-orange-500',
-        d: 'text-red-500'
-    };
 </script>
 
 <div class="min-h-screen bg-surface-900">
@@ -63,14 +51,14 @@
                        {currentType === 'vanilla' ? 'bg-zinc-500 text-white' : 'bg-surface-900 text-zinc-400 hover:bg-zinc-700'}"
                 on:click={toggleType}
             >
-                re;fx
+                001
             </button>
             <button 
                 class="px-4 py-1 rounded text-sm font-medium transition-colors
                        {currentType === 'relax' ? 'bg-zinc-500 text-white' : 'bg-surface-900 text-zinc-400 hover:bg-zinc-700'}"
                 on:click={toggleType}
             >
-                Shaymi
+                002
             </button>
         </div>
 
@@ -117,14 +105,12 @@
                             <div class="text-zinc-400 text-xs">[{score.version}]</div>
                         </a>
                         <div class="flex justify-between items-center mt-2">
-                            <span class={`font-bold ${gradeClasses[score.grade.toLowerCase()] || ''}`}>
-                                {score.grade}
+                            <span class="w-10 md:w-8 text-center !text-4xl md:!text-2xl font-bold grade grade-{score.grade.toLowerCase()}">
+                                {score.grade.replaceAll('XH', 'SS').replaceAll('X', 'SS').replaceAll('SH', 'S')}
                             </span>
                             <div class="flex gap-1">
-                                {#each score.mods as mod}
-                                    <span class="bg-zinc-800 text-zinc-300 text-xs px-1 rounded">
-                                        {mod.short_name}
-                                    </span>
+                                {#each score.mods as mod, i}
+                                    <img src={mod} alt="{score.mods[i]}" class="w-8 md:w-7 h-6 md:h-5" />
                                 {/each}
                             </div>
                         </div>

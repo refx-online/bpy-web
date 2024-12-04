@@ -2,7 +2,7 @@ import { getMySQLDatabase, getRedisClient } from '../hooks.server';
 import crypto from 'crypto';
 import bcrypt from 'bcrypt';
 import type { DBUser } from './types';
-import { passwordRegex, usernameRegex } from './regex';
+import { usernameRegex } from './regex';
 import { getInfoFromIP } from './geoloc';
 
 export const createPassword = (plainPassword: string): Promise<string> => {
@@ -22,6 +22,8 @@ export const register = async (opts: {
 	username: string;
 	password: string;
 	ip: string;
+	/*discordId: string;
+	authKey: string;*/
 }): Promise<{ succeeded: boolean; message: string }> => {
 	const { username, password, ip } = opts;
 
@@ -32,10 +34,10 @@ export const register = async (opts: {
 		};
 	}
 
-	if (!passwordRegex.test(password)) {
+	if (password.length < 6) {
 		return {
 			succeeded: false,
-			message: 'Your password is not strong enough!'
+			message: 'Your password should have more than 6 characters!'
 		};
 	}
 

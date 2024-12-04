@@ -24,6 +24,13 @@
 							<button
 								class="w-32 btn variant-filled-surface rounded-lg"
 								on:click={() => {
+									goto(`/u/${$userData?.id}`);
+									drawerStore.close();
+								}}>{__('Profile', $userLanguage)}</button
+							>
+							<button
+								class="w-32 btn variant-filled-surface rounded-lg"
+								on:click={() => {
 									goto(`/settings`);
 									drawerStore.close();
 								}}>{__('settings', $userLanguage)}</button

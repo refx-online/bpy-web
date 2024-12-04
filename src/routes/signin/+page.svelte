@@ -106,14 +106,10 @@
 					<input
 						id="username"
 						type="text"
-						placeholder={__('Email or Username', $userLanguage)}
+						placeholder={__('Username', $userLanguage)}
 						on:input={() => (errored = false)}
 						on:keypress={(e) => {
 							if (e.key === 'Enter') {
-								if (loginData.username.length <= 3) {
-									errored = true;
-									return;
-								}
 								passwordMask = true;
 							}
 						}}
@@ -133,10 +129,6 @@
 						<button
 							class="btn bg-pink-700"
 							on:click={() => {
-								if (loginData.username.length <= 3) {
-									errored = true;
-									return;
-								}
 								passwordMask = true;
 							}}>{__('Next', $userLanguage)}</button
 						>
@@ -183,7 +175,7 @@
 							bind:reset={resetCaptcha}
 						/>
 					{/if}
-					<a href="/login" class="text-pink-700 me-auto mb-7"
+					<a href="https://discord.gg/jAByKzy8Mq" class="text-pink-700 me-auto mb-7"
 						>{__('Forgot password?', $userLanguage)}</a
 					>
 					<div class="w-full flex flex-row justify-between mt-auto mb-14">

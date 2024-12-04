@@ -16,7 +16,7 @@ bpy-web is a frontend web application developed using SvelteKit for the [bancho.
 - [ ] **User Settings:** Allow users to customize their account settings and preferences.
 - [ ] **Beatmap Requests:** Ability for users to request new beatmaps to be ranked/loved/approved.
 - [ ] **Admin Panel:** A secure area for administrators to manage users, beatmaps, and system settings.
-- [ ] **Pinned Score:** Allow users to pin their beloved scores.
+- [x] **Pinned Score:** Allow users to pin their beloved scores.
 
 ## Requirements
 

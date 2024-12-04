@@ -30,7 +30,7 @@
         return true;
     }
 
-
+    // TODO: move everything
     async function handleAvatarUpload() {
         if (!avatarFile?.[0]) return;
         isLoading = true;
@@ -86,6 +86,30 @@
             isLoading = false;
         }
     }
+
+    const handleUsernameSubmit: SubmitFunction = () => {
+        if (!validateUsername(newUsername)) {
+            return ({ result, update }) => {
+                result.type = 'failure';
+                update({ reset: false });
+            };
+        }
+
+        message = '';
+        isLoading = true;
+
+        return async ({ result, update }) => {
+            if (result.type === 'success') {
+                message = __('Username updated successfully', $userLanguage);
+                newUsername = '';
+            } else if (result.type === 'failure') {
+                message = result.data?.message || __('Failed to update username', $userLanguage);
+            }
+
+            isLoading = false;
+            await update();
+        };
+    };
 
 </script>
 
@@ -177,14 +201,13 @@
             {/if}
 
             <!-- Username Change -->
-            <!--
             {#if data.currentUser}
                 <div class="space-y-4">
                     <h2 class="text-xl font-semibold">{__('Change Username', $userLanguage)}</h2>
                     <form
                         method="POST"
                         action="?/changeUsername"
-                        use:enhance={handleSubmit}
+                        use:enhance={handleUsernameSubmit}
                         class="space-y-4"
                     >
                         <div class="space-y-2">
@@ -198,7 +221,7 @@
                                 class="input"
                                 bind:value={newUsername}
                                 on:input={() => validateUsername(newUsername)}
-                                placeholder={__('Enter new username', $userLanguage)}
+                                placeholder={__('enter new username', $userLanguage)}
                             />
                             {#if usernameError}
                                 <p class="text-error-500 text-sm">{usernameError}</p>
@@ -207,14 +230,13 @@
                         <button
                             type="submit"
                             class="btn variant-filled-primary"
-                            disabled={!!usernameError}
+                            disabled={!!usernameError || !newUsername}
                         >
                             {__('Change Username', $userLanguage)}
                         </button>
                     </form>
                 </div>
             {/if}
-            -->
 
             <!-- Password Change -->
             <!--{#if data.currentUser}

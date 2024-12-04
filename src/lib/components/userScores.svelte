@@ -15,17 +15,21 @@
 	import { userLanguage } from '$lib/storage';
 	import { scale } from 'svelte/transition';
 	import Time, { dayjs } from 'svelte-time';
+	import { pinScore } from '$lib/api';
+	import { Heart } from 'svelte-feathers';
 
 	export let title: string;
 	export let userId: number;
-	export let scoresType: 'best' | 'recent' | 'first';
+	export let scoresType: 'best' | 'recent' | 'first' | 'pinned';
 	export let scoreAmount: number;
 	export let currentMode: string;
 	export let currentType: string;
+	export let currentUserId: any;
 
 	let scores: PlayerScores | undefined;
 	let loading = false;
 	let amount = 0;
+	let openMenuIndex: number | null = null;
 
 	const loadMoreScores = async () => {
 		if (loading) return;
@@ -64,6 +68,32 @@
 	};
 
 	onMount(loadMoreScores);
+	const toggleMenu = (index: number) => {
+		openMenuIndex = openMenuIndex === index ? null : index;
+	};
+
+	const handlePinScore = async (score: any) => {
+		await pinScore(score.id, score.pinned === 1, currentUserId, userId);
+		location.reload();
+		openMenuIndex = null;
+	};
+
+	// pasted from soemwhere
+	function clickOutside(node: HTMLElement, callback: () => void) {
+		const handleClick = (event: MouseEvent) => {
+			if (!node.contains(event.target as Node)) {
+				callback();
+			}
+		};
+
+		document.addEventListener('click', handleClick, true);
+
+		return {
+			destroy() {
+				document.removeEventListener('click', handleClick, true);
+			}
+		};
+	}
 </script>
 
 <div class="relative flex flex-col gap-1">
@@ -97,14 +127,24 @@
 									{score.grade.replaceAll('XH', 'SS').replaceAll('X', 'SS').replaceAll('SH', 'S')}
 								</div>
 								<div class="flex flex-col w-full truncate">
-									<div class="flex flex-col lg:flex-row lg:items-center lg:gap-1 mb-1">
-										<div class="text-sm font-bold truncate">{score.beatmap.title}</div>
-										<div class="text-xs font-semibold truncate">by {score.beatmap.artist}</div>
-									</div>
-									<div class="flex flex-col lg:flex-row lg:gap-3">
-										<span class="text-xs font-semibold text-yellow-600"
-											>{score.beatmap.version}</span
-										>
+									    <div class="flex flex-col lg:flex-row lg:items-center lg:gap-1 mb-1">
+											<div class="text-sm font-bold truncate max-w-full" title={score.beatmap.title}>
+												{score.beatmap.title.length > 30 
+													? score.beatmap.title.slice(0, 30) + '...' 
+													: score.beatmap.title}
+											</div>
+											<div class="text-xs font-semibold truncate max-w-full" title={score.beatmap.artist}>
+												by {score.beatmap.artist.length > 20 
+													? score.beatmap.artist.slice(0, 20) + '...' 
+													: score.beatmap.artist}
+											</div>
+										</div>
+										<div class="flex flex-col lg:flex-row lg:gap-3">
+											<span class="text-xs font-semibold text-yellow-600 truncate max-w-full" title={score.beatmap.version}>
+												{score.beatmap.version.length > 25 
+													? score.beatmap.version.slice(0, 25) + '...' 
+													: score.beatmap.version}
+											</span>
 										<Popup placement="right">
 											<div class="text-xs font-semibold text-surface-300">
 												<Time timestamp={dayjs(score.play_time).locale($userLanguage)} relative />
@@ -160,31 +200,46 @@
 								</div>
 							</div>
 						</div>
-
-						<Popup event="click" placement="top" class="!hidden !md:inline-block">
+						<div class="relative">
 							<button
-								class="hidden md:flex btn variant-soft-surface cursor-pointer rounded-lg p-2 px-3 justify-center items-center"
-								disabled={score.status <= 0}
+								class="btn variant-soft-surface cursor-pointer rounded-lg p-2 px-3 justify-center items-center"
+								on:click={() => toggleMenu(idx)}
+								title={__('More Options', $userLanguage)}
 							>
 								<MoreVertical class="pointer-events-none" />
 							</button>
-							<svelte:fragment slot="popup">
-								{#if score.status > 0}
-									<div
-										class="card variant-filled-surface !bg-surface-600 p-2 z-[9999] text-sm rounded-lg"
-									>
-										<a
-											class="btn variant-filled-surface text-sm rounded-lg"
-											href="{apiUrl}/v1/get_play?id={score.id}"
+							{#if openMenuIndex === idx}
+								<div 
+									class="absolute z-20 right-0 top-full mt-1 bg-surface-600 rounded-lg shadow-lg border border-surface-400"
+									use:clickOutside={() => openMenuIndex = null}
+								>
+									{#if currentUserId === userId}
+										<button
+											class="flex items-center w-full px-4 py-2 text-sm hover:bg-surface-500 text-start"
+											on:click={() => handlePinScore(score)}
 										>
-											<Download class="pointer-events-none mr-2" size={16} />
+											<Heart
+												class="mr-2" 
+												fill={score.pinned === 1 ? 'currentColor' : 'none'} 
+												stroke={score.pinned === 1 ? 'none' : 'currentColor'}
+											/>
+											{score.pinned === 1 ? __('Unpin Score', $userLanguage) : __('Pin Score', $userLanguage)}
+										</button>
+									{/if}
+									
+									{#if score.status > 0 && score.grade != "F"}
+										<a
+											href="{apiUrl}/v1/get_play?id={score.id}"
+											class="flex items-center w-full px-4 py-2 text-sm hover:bg-surface-500 text-start"
+											title={__('Download Replay', $userLanguage)}
+										>
+											<Download class="mr-2" />
 											{__('Download Replay', $userLanguage)}
 										</a>
-									</div>
-									<div class="arrow border-r border-b border-gray-700 !bg-surface-600"></div>
-								{/if}
-							</svelte:fragment>
-						</Popup>
+									{/if}
+								</div>
+							{/if}
+						</div>
 					</div>
 				{/each}
 			{/if}
@@ -198,7 +253,7 @@
 				<div>
 					<ProgressRadial width="w-5" />
 				</div>
-			{:else}
+			{:else if scores.scores.length >= 5 && !loading || scores}
 				<ChevronDown class="pointer-events-none text-surface-400" size={16} />
 				<span class="uppercase font-semibold">{__('show more', $userLanguage)}</span>
 				<ChevronDown class="pointer-events-none text-surface-400" size={16} />

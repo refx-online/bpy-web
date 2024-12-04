@@ -3,6 +3,7 @@ import { sanitizeHtml } from '$lib/html';
 import { isNumber } from '$lib/stringUtil.js';
 import { parse } from 'marked';
 import { parseBBCodeToHtml } from '$lib/bbcode';
+import { getMySQLDatabase } from '../../../hooks.server';
 
 export async function load({ params }) {
 	const requestedUserId = params.userId;
@@ -29,4 +30,28 @@ export async function load({ params }) {
 		clan: clan,
 		userpage: parsedUserPage
 	};
+}
+
+export const actions = {
+    updateUserpage: async ({ request, params, locals }) => {
+        const data = await request.formData();
+        const userpageContent = data.get('userpage')?.toString() ?? '';
+
+        if (!isNumber(params.userId)) {
+            return;
+        }
+
+        try {
+            const mysqlDatabase = await getMySQLDatabase();
+
+            await mysqlDatabase('users')
+                .where('id', parseInt(params.userId))
+                .update({ userpage_content: userpageContent });
+
+            return { success: true };
+        } catch (error) {
+            console.error('failed to update userpage', error);
+            return;
+        }
+    }
 }

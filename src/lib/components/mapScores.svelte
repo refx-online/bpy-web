@@ -12,6 +12,8 @@
 	import Flag from './Flag.svelte';
 	import Mod from './Mod.svelte';
 	import Popup from './Popup.svelte';
+	import Download from 'svelte-feathers/Download.svelte';
+	import { apiUrl } from '$lib/env';
 
 	export let beatmapScores: MapScore[];
 	export let loading: boolean;
@@ -159,6 +161,15 @@
 										<Mod {mod} size={18} tooltip={true}></Mod>
 									{/each}
 								</div>
+							</td>
+							<td>
+								<a
+									href="{apiUrl}/v1/get_play?id={score.id}"
+									class="hidden md:flex btn variant-soft-surface cursor-pointer rounded-lg p-2 px-3 justify-center items-center"
+									title={__('Download Replay', $userLanguage)}
+								>
+									<Download class="pointer-events-none" />
+								</a>
 							</td>
 						</tr>
 					{/each}

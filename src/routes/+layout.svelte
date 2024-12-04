@@ -176,8 +176,8 @@
 						: 'w-[100%] bg-surface-700 border-surface-700'}  transition-all duration-700 z-[9999]"
 				>
 					<div class="flex p-2 px-4 flex-row justify-between items-center gap-2">
-						<a class="text-xl uppercase cursor-pointer mr-12" on:click={() => goto('/')}
-							>{appName}</a
+						<a class="text-xl uppercase cursor-pointer mr-12 flex items-center gap-2" on:click={() => goto('/')}
+							><img src="/favicon.png" alt="tsuki" class="w-8 h-8" />{appName}</a
 						>
 						<div class="hidden md:flex flex-row justify-start items-center gap-2 me-auto">
 							<NavItems {drawerStore} />

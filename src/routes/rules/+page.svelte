@@ -15,7 +15,7 @@
     }
 </script>
 
-<div class="content container mx-auto px-4 py-8">
+<div class="content container mx-auto px-4 py-8 relative z-[2]">
     <div class="nav-buttons">
         <button 
             class="nav-button {currentPage === 'rules' ? 'active' : ''}" 
@@ -42,7 +42,7 @@
     <!-- TODO: use languages -->
     {#if currentPage === 'rules'}
         <section 
-            class="section" 
+            class="section relative z-[3]" 
             in:slide="{{ duration: 300, axis: 'x' }}"
             out:fade="{{ duration: 200 }}"
         >
@@ -86,7 +86,7 @@
         </section>
     {:else if currentPage === 'cheats'}
         <section 
-            class="section" 
+            class="section relative z-[3]" 
             in:slide="{{ duration: 300, axis: 'x' }}"
             out:fade="{{ duration: 200 }}"
         >
@@ -135,11 +135,13 @@
         background-color: #121212;
         color: #e0e0e0;
         overflow-x: hidden;
+        position: relative;
+        z-index: 1;
     }
 
     .content {
         position: relative;
-        z-index: 10;
+        z-index: 2;
     }
 
     .nav-buttons {
@@ -181,6 +183,7 @@
         border: 1px solid rgba(255,255,255,0.1);
         box-shadow: 0 10px 25px rgba(0,0,0,0.2);
         position: relative;
+        z-index: 3;
     }
 
     .header-container {

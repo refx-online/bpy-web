@@ -24,6 +24,7 @@ const language: Language = {
         'Not affiliated with ppy or osu!.': 'Tidak berafiliasi dengan ppy atau osu!.',
         // dear god
         // TODO: cheatinfo and donate, too lazy for now
+        // home too?? nah maybe not
         'Cheat Info': 'Info Cheat',
         "There's rules?": 'Ada aturan?',
         'Use common sense': 'Gunakan akal sehat',
@@ -39,6 +40,8 @@ const language: Language = {
         'To report a user, please report to a moderator on our Discord. Everything further will be handled with them': 'Untuk melaporkan pengguna, silakan laporkan kepada moderator di Discord kami. Segala sesuatu selanjutnya akan ditangani oleh mereka.',
         'How do I appeal my punishment?': 'Bagaimana cara saya mengajukan banding atas hukuman saya?',
         'To appeal your punishment, please direct message one of our moderator on our Discord. They will reach out to you, discussing your punishment and a more detailed appeal from your side.': 'Untuk mengajukan banding atas hukuman Anda, silakan kirim pesan langsung ke salah satu moderator kami di Discord kami. Mereka akan menghubungi Anda, mendiskusikan hukuman Anda dan permohonan banding yang lebih rinci dari pihak Anda.',
+        'Recently Created Accounts': 'Akun yang baru saja dibuat',
+        'PP Records': 'Rekor PP',
 
         Accuracy: 'Akurasi',
         'Play Count': 'Jumlah Main',
@@ -67,8 +70,8 @@ const language: Language = {
         'weighted {{val}}%': 'diweight {{val}}%',
         'Sign Up': 'Daftar',
         'Sign In': 'Masuk',
-        'online users': 'pengguna online',
-        'registered users': 'pengguna terdaftar',
+        'Online Users': 'Pengguna Online',
+        'Registered Users': 'Pengguna Terdaftar',
         Profile: 'Profil',
         Logout: 'Keluar',
         'This is taking longer than expected...': 'Ini memakan waktu lebih lama dari yang diharapkan...',

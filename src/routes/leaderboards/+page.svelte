@@ -183,7 +183,7 @@
 						on:click={() => setType('vanilla')}
 						disabled={loading || failed}
 					>
-						re;fx
+						001
 					</button>
 					<button
 						class="w-[100%] md:w-[25%] !scale-100 btn {currentType == 'relax'
@@ -192,7 +192,7 @@
 						on:click={() => setType('relax')}
 						disabled={loading || failed}
 					>
-						Shaymi
+						002
 					</button>
 				</div>
 				<div class="w-full flex rounded-lg">
