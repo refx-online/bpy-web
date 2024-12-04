@@ -15,7 +15,7 @@
 	import Key from 'svelte-feathers/Key.svelte';
 	import { Turnstile } from 'svelte-turnstile';
 	import { fly, scale } from 'svelte/transition';
-	import { passwordRegex, usernameRegex } from '$lib/regex';
+	import { usernameRegex } from '$lib/regex';
 
 	const turnstileSiteKey = env.PUBLIC_TURNSTILE_SITE_KEY;
 
@@ -52,7 +52,7 @@
 			});
 			return;
 		}
-		if (!passwordRegex.test(registerData.password)) {
+		if (registerData.password.length > 6) {
 			toastStore.trigger({
 				message: __('Your password is not strong enough!', $userLanguage),
 				classes: '!bg-red-700 !text-surface-100 !border-red-600 !border'
