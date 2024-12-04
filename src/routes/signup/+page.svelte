@@ -52,7 +52,7 @@
 			});
 			return;
 		}
-		if (registerData.password.length > 6) {
+		if (registerData.password.length < 6) {
 			toastStore.trigger({
 				message: __('Your password is not strong enough!', $userLanguage),
 				classes: '!bg-red-700 !text-surface-100 !border-red-600 !border'
