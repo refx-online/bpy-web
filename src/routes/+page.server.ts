@@ -8,6 +8,7 @@ export const load = async () => {
 
     const recentAccounts = await mysqlDatabase<DBUser>('users')
         .select('id', 'name', 'creation_time')
+		.where('priv', '&', 1 << 1)
         .orderBy('creation_time', 'desc')
         .limit(10);
 
