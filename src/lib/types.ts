@@ -1,6 +1,7 @@
 export type UserData = {
 	id: number;
 	username: string;
+	priv: number;
 };
 
 export type UserLoginData = {

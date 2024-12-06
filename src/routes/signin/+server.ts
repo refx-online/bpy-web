@@ -58,7 +58,8 @@ export const POST = async ({ cookies, request, getClientAddress }) => {
 		message: 'Login successful',
 		user: {
 			id: user.id,
-			username: user.name
+			username: user.name,
+			priv: user.priv
 		}
 	});
 };

@@ -66,6 +66,7 @@ export const register = async (opts: {
 		const userIdInsert = await trx('users').insert({
 			name: username,
 			safe_name: safeName,
+			priv: (1 << 1), // i forgot where did kaupec removes the ingame login check on b.py
 			pw_bcrypt: hashedPassword,
 			country: countryCode,
 			creation_time: currentTimestamp,

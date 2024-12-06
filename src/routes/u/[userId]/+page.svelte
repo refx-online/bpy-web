@@ -20,7 +20,7 @@
 	import { __ } from '$lib/language';
 	import UserRankBadges from '$lib/components/userRankBadges.svelte';
 	import UserMostPlayed from '$lib/components/userMostPlayed.svelte';
-	import { Privileges, isDonator, privsToGroups } from '$lib/privs';
+	import { Privileges, isDonator, privsToGroups, isStaff } from '$lib/privs';
 	import Time, { dayjs } from 'svelte-time';
 	import Edit from 'svelte-feathers/Edit.svelte';
 	import Check from 'svelte-feathers/Check.svelte';
@@ -217,12 +217,12 @@
 	};
 
 	let isEditing = false;
-	let editedUserpage = data.user.info.userpage_content;
+	let editedUserpage = data.user?.info.userpage_content;
 
 	const handleEditToggle = () => {
 		isEditing = !isEditing;
 		if (!isEditing) {
-			editedUserpage = data.user.info.userpage_content;
+			editedUserpage = data.user?.info.userpage_content;
 		}
 	};
 
@@ -255,7 +255,7 @@
 	{/if}
 </svelte:head>
 <div class="container mx-auto w-full p-5">
-	{#if data.user?.info.id}
+	{#if isStaff($userData?.priv) || (data.user?.info.id && data.user?.info.priv & Privileges.VERIFIED)}
 		<div class="mx-auto card">
 			<div class="w-full flex flex-col">
 				<div class="overflow-hidden rounded-lg">
@@ -328,7 +328,7 @@
 				</div>
 				<div
 					class="relative h-28 md:h-64 bg-center bg-cover bg-no-repeat"
-					style="background-image: url('/u/{data.user.info.id}/cover');"
+					style="background-image: url('/u/{data.user?.info.id}/cover');"
 				>
 					{#if $userData?.id == data.user.info.id}
 						<a

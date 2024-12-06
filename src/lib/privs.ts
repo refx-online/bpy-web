@@ -19,6 +19,14 @@ export function isDonator(playerPriv: number): boolean {
 	);
 }
 
+export const isStaff = (playerPriv?: number): boolean =>
+	playerPriv !== undefined &&
+	[
+		Privileges.ADMINISTRATOR,
+		Privileges.DEVELOPER,
+		Privileges.MODERATOR
+	].some(priv => hasPrivilege(playerPriv, priv));
+
 /* https://github.com/osuAkatsuki/bancho.py/blob/master/app/constants/privileges.py#L13-L38 */
 export enum Privileges {
 	UNRESTRICTED = 1 << 0,
